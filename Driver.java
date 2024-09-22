@@ -12,5 +12,22 @@ public class Driver {
     System.out.println("1 is a root of s");
     else
     System.out.println("1 is not a root of s");
+    double[] coeffs1 = {0};
+    double[] coeffs2 = {0};
+    Polynomial p3 = new Polynomial(coeffs1);
+    Polynomial p4 = new Polynomial(coeffs2);
+    Polynomial result = p3.add(p4);  // Should still be a zero polynomial
+    System.out.println(result.evaluate(0));  // Should print 0.
+    double[] coeffs3 = {1, 2};       // Represents 1 + 2x
+    double[] coeffs4 = {3, 4, 5, 6}; // Represents 3 + 4x + 5x^2 + 6x^3
+    Polynomial p5 = new Polynomial(coeffs3);
+    Polynomial p6 = new Polynomial(coeffs4);
+    Polynomial result2 = p5.add(p6);  // Result should be 4 + 6x + 5x^2 + 6x^3
+    for (int i = 0; i < result2.coefficients.length; i++) {
+        System.out.println(result2.coefficients[i]);
+    }    
+    System.out.println(result2.evaluate(1));  // Should print 21.0
+
     }
+
 }

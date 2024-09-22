@@ -9,11 +9,13 @@ public class Polynomial {
         coefficients = new double[1];
         coefficients[0] = 0;
     }
+    
 
     //constructor
-    public Polynomial(double [] coefficients){
+    public Polynomial(double[] coefficients) {
         this.coefficients = coefficients;
     }
+    
 
     //method add
     public Polynomial add(Polynomial polynomial){
