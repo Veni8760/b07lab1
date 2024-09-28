@@ -1,37 +1,92 @@
+import java.util.HashMap;
+
+
 public class Polynomial {
     //fields
     double [] coefficients;
+    int [] exponents;
 
     //methods
 
     //no-arguement constructor
     public Polynomial() {
-        coefficients = new double[1];
-        coefficients[0] = 0;
+        coefficients = null;
+        exponents = null;
     }
 
     //constructor
-    public Polynomial(double [] coefficients){
+    public Polynomial(double [] coefficients, int [] exponents ){
         this.coefficients = coefficients;
+        this.exponents = exponents;
     }
 
     //method add
     public Polynomial add(Polynomial polynomial){
         int newMaxLength = Math.max(coefficients.length, polynomial.coefficients.length);
-        int minLength = Math.min(coefficients.length, polynomial.coefficients.length);
+
         double [] summedPolynomial = new double[newMaxLength];
-    
-        for (int i =0; i < minLength; i++){
-            summedPolynomial[i] = coefficients[i] + polynomial.coefficients[i]; 
-        }
-        for(int i =minLength; i< newMaxLength; i++){
-            if (i < coefficients.length) {
-                summedPolynomial[i] = coefficients[i];
-            } else {
-                summedPolynomial[i] = polynomial.coefficients[i];
+        int [] summedexponents = new int[newMaxLength];
+
+        if(coefficients.length < polynomial.coefficients.length){
+            for(int i = 0; i< polynomial.coefficients.length; i++){
+                boolean addedToArr = false;
+                for(int j = 0; j< coefficients.length; i++){
+                    if(polynomial.exponents[i] == exponents[j]){
+                        if(coefficients[i]+ polynomial.coefficients[j] != 0){
+                            summedPolynomial[i] = coefficients[i] + polynomial.coefficients[j];
+                            addedToArr = true;
+                        }
+                        else{
+                            addedToArr = true;
+                        }
+        
+                    }
+                }
+                if(addedToArr == false){
+                    summedexponents[i] = polynomial.exponents[i];
+                    summedPolynomial[i] = polynomial.coefficients[i];
+                }
+                
+            }
+
+            for(int i = 0; i< coefficients.length; i++){
+                boolean x = true;
+                for(int j = 0; j< summedexponents.length; i++){
+                    if(exponents[i] == summedexponents[j]){
+                        x = false;
+                    }
+
+
+                }
+                summedPolynomial
             }
         }
-        return new Polynomial(summedPolynomial);
+        else{
+            for(int i = 0; i< coefficients.length; i++){
+                boolean addedToArr = false;
+                for(int j = 0; j< polynomial.coefficients.length; i++){
+                    if(exponents[i] == polynomial.exponents[j]){
+                        if(coefficients[i]+ polynomial.coefficients[j] != 0){
+                            summedPolynomial[i] = coefficients[i] + polynomial.coefficients[j];
+                            addedToArr = true;
+                        }
+                        else{
+                            addedToArr = true;
+                        }
+                    }
+                }
+                if(addedToArr == false){
+                    summedPolynomial[i] = coefficients[i];
+                }
+                
+            }
+
+            for(int i = 0;)
+        }
+
+
+        return new Polynomial(summedPolynomial, summedexponents);
+        
     }
 
     //method evaluate
